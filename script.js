@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.body.appendChild(butterfly);
 
-        // Eliminar
+        // Eliminar después de 1 segundo
         setTimeout(() => {
             butterfly.remove();
         }, 1000);
@@ -40,32 +40,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progress-bar');
 
     // --- ENTRADA ---
-    enterBtn.addEventListener('click', () => {
-        enterScreen.style.opacity = '0';
-        
-        setTimeout(() => {
-            enterScreen.style.display = 'none';
-            mainLayout.classList.remove('hidden-layout');
+    if(enterBtn) {
+        enterBtn.addEventListener('click', () => {
+            enterScreen.style.opacity = '0';
             
             setTimeout(() => {
-                document.querySelector('.nav-menu').classList.add('animate-buttons');
-            }, 300);
+                enterScreen.style.display = 'none';
+                mainLayout.classList.remove('hidden-layout');
+                
+                setTimeout(() => {
+                    const navMenu = document.querySelector('.nav-menu');
+                    if(navMenu) navMenu.classList.add('animate-buttons');
+                }, 300);
 
-            initTypewriter();
-            playMusic();
-        }, 800);
-    });
+                initTypewriter();
+                playMusic();
+            }, 800);
+        });
+    }
 
-    // --- MAQUINA DE ESCRIBIR (NUEVA FUENTE APLICADA EN CSS) ---
+    // --- MAQUINA DE ESCRIBIR ---
     const welcomeMsg = "La elegancia no es solo belleza, es también la forma de pensar, la forma de moverte.";
     function initTypewriter() {
+        if(!typingText) return;
         let i = 0;
         typingText.innerHTML = "";
         function type() {
             if (i < welcomeMsg.length) {
                 typingText.innerHTML += welcomeMsg.charAt(i);
                 i++;
-                setTimeout(type, 50); // Un poco más lento para la cursiva
+                setTimeout(type, 50); 
             }
         }
         type();
@@ -79,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
             mainLayout.style.filter = "blur(10px) grayscale(50%)";
             mainLayout.style.transform = "scale(0.98)";
             
-            // Si es galería, recalcular posición con un pequeño delay para asegurar que el DOM ya pintó el modal
             if(modalId === 'modal-gallery') {
                 setTimeout(() => {
                     updateGallery3D();
@@ -89,7 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.closeModal = function(modalId) {
-        document.getElementById(modalId).classList.remove('active');
+        const modal = document.getElementById(modalId);
+        if(modal) modal.classList.remove('active');
         mainLayout.style.filter = "none";
         mainLayout.style.transform = "scale(1)";
     };
@@ -98,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('modal')) closeModal(e.target.id);
     };
 
-    // --- GALERÍA 3D (CORREGIDA Y CENTRADA) ---
+    // --- GALERÍA 3D ---
     const galleryImages = [
         "https://xatimg.com/image/UCQwTE98gue9.jpg",
         "https://xatimg.com/image/IgoLKiYoP4US.jpg",
@@ -111,39 +115,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselTrack = document.getElementById('carousel-3d-track');
     let galleryIndex = 0; 
 
-    // Renderizar cartas
-    carouselTrack.innerHTML = "";
-    galleryImages.forEach((src, i) => {
-        const card = document.createElement('div');
-        card.className = 'card-3d-gold';
-        card.innerHTML = `<img src="${src}" alt="Img ${i}" style="width:100%;height:100%;object-fit:cover;">`;
-        card.onclick = () => { galleryIndex = i; updateGallery3D(); };
-        carouselTrack.appendChild(card);
-    });
+    if(carouselTrack) {
+        carouselTrack.innerHTML = "";
+        galleryImages.forEach((src, i) => {
+            const card = document.createElement('div');
+            card.className = 'card-3d-gold';
+            card.innerHTML = `<img src="${src}" alt="Img ${i}" style="width:100%;height:100%;object-fit:cover;">`;
+            card.onclick = () => { galleryIndex = i; updateGallery3D(); };
+            carouselTrack.appendChild(card);
+        });
+    }
 
-    // Función de centrado precisa
     window.updateGallery3D = () => {
         const cards = document.querySelectorAll('#carousel-3d-track .card-3d-gold');
         if(!cards.length) return;
         
-        // Activar clase
         cards.forEach(c => c.classList.remove('active'));
         if(cards[galleryIndex]) cards[galleryIndex].classList.add('active');
 
-        // Cálculos matemáticos precisos
         const container = document.querySelector('.gallery-container-3d');
-        const containerWidth = container.offsetWidth;
+        if(!container) return;
         
-        // Obtener ancho real de la tarjeta (incluyendo margen si es posible, pero offsetWidth es seguro)
+        const containerWidth = container.offsetWidth;
         const cardWidth = cards[0].offsetWidth; 
-        const cardMargin = 40; // 20px izquierda + 20px derecha definidos en CSS
+        const cardMargin = 40; 
         const fullCardSpace = cardWidth + cardMargin;
 
-        // Formula: Centro del contenedor - (Posición de la carta actual) - (Mitad de la carta actual)
-        // Ajuste: +20 es para compensar el margen inicial izquierdo de la primera carta
         const centerPosition = (containerWidth / 2) - (galleryIndex * fullCardSpace) - (cardWidth / 2) - 20;
 
-        carouselTrack.style.transform = `translateX(${centerPosition}px)`;
+        if(carouselTrack) carouselTrack.style.transform = `translateX(${centerPosition}px)`;
     };
 
     window.moveGallery = (dir) => {
@@ -161,17 +161,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadMusic(i) {
         audio.src = playlist[i].src;
-        document.getElementById('song-title').innerText = playlist[i].title;
-        document.getElementById('song-artist').innerText = playlist[i].artist;
+        const titleEl = document.getElementById('song-title');
+        const artistEl = document.getElementById('song-artist');
+        if(titleEl) titleEl.innerText = playlist[i].title;
+        if(artistEl) artistEl.innerText = playlist[i].artist;
     }
     
     window.playMusic = () => {
         audio.play().then(() => {
             isPlaying = true;
-            vinyl.classList.add('vinyl-spin');
-            playIcon.className = "fas fa-pause";
+            if(vinyl) vinyl.classList.add('vinyl-spin');
+            if(playIcon) playIcon.className = "fas fa-pause";
+            if(pInt) clearInterval(pInt);
             pInt = setInterval(() => {
-                progressBar.style.width = (audio.currentTime/audio.duration)*100 + "%";
+                if(progressBar && audio.duration) {
+                    progressBar.style.width = (audio.currentTime/audio.duration)*100 + "%";
+                }
             }, 100);
         }).catch(() => {});
     };
@@ -179,8 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.togglePlay = () => {
         if(isPlaying) {
             audio.pause(); isPlaying = false;
-            vinyl.classList.remove('vinyl-spin');
-            playIcon.className = "fas fa-play";
+            if(vinyl) vinyl.classList.remove('vinyl-spin');
+            if(playIcon) playIcon.className = "fas fa-play";
             clearInterval(pInt);
         } else {
             playMusic();
@@ -189,13 +194,35 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.nextSong = () => { sIdx=(sIdx+1)%playlist.length; loadMusic(sIdx); playMusic(); };
     window.prevSong = () => { sIdx=(sIdx-1+playlist.length)%playlist.length; loadMusic(sIdx); playMusic(); };
-    loadMusic(0);
+    
+    if(audio) loadMusic(0);
 
-    // Re-calcular galería si cambian tamaño de ventana
     window.addEventListener('resize', () => {
         updateGallery3D();
     });
 
-}
+    // --- PROTECCIÓN (BLOQUEO DE INSPECTOR) ---
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
 
+    document.addEventListener('keydown', (e) => {
+        // Bloquear F12
+        if (e.key === 'F12' || e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+Shift+I, J, C
+        if (e.ctrlKey && e.shiftKey && 
+           (e.key === 'I' || e.key === 'J' || e.key === 'C' || e.key === 'i' || e.key === 'j' || e.key === 'c')) {
+            e.preventDefault();
+            return false;
+        }
+        // Bloquear Ctrl+U
+        if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+            e.preventDefault();
+            return false;
+        }
+    });
 
+}); // <-- ESTE ERA EL CIERRE QUE FALTABA O ESTABA MAL PUESTO
