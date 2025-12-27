@@ -12,10 +12,8 @@
     --font-cursive: 'Great Vibes', cursive;
 }
 
-/* --- CAMBIO IMPORTANTE AQUÍ: SE QUITÓ "cursor: none" --- */
 * { 
     margin: 0; padding: 0; box-sizing: border-box; 
-    /* cursor: none !important;  <- ESTA LINEA SE ELIMINÓ PARA MOSTRAR EL MOUSE */
 } 
 
 body {
@@ -29,8 +27,7 @@ body {
     align-items: center;
     position: relative;
     
-    /* --- NUEVO CURSOR DE MARIPOSA --- */
-    /* Esta larga cadena de texto es la imagen de la mariposa incrustada */
+    /* --- CURSOR DE MARIPOSA --- */
     cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADFUlEQVRYR+1XW0hUURT9zrnOjE/TUcyXxCgLg0hEEb3445MgegjxIVTog0b0lILoKYKCHioMIiikv0qQ+hChhwoqQhA1H0pGqWkqaZozc8e5G+ecO+M8dRx1RjMD98e9556z915rn32OMC9+bC/+59+8Q/8d4G8GvL39GDo/X6E4R38F3J3dKFq7gCLGkCKEoAjByqGZ+52Z0c1851e2v6H1+vIuFBU9QnJ2NlJzslG+qQQ7t5fS/TqOf74E+v/oR2vHbeQVP0BKFv29e5vOXYUu5iLw+euvmJj4iN67g2i+fAeL8j7T2b4S/Pg5jMbWC8jI9SM5OxNpa2m7uRxbK0ow+fELuvrvoKXrPjILPiM5ixbgJ674e43D6Hh9Fq/7H6Om/jmyC0YpD5iZmcG3b98wMTExq46j6Tj6Xy8g7+MAlZ2V6L5/Gz33h2cIuH6yEvWn96K8YgNFCp1D0xH03u7B0PAINm3aBEJILoSApmm43XYc3S9PorjkD5Udhc8fnmFg8FGGgL8c1F68g0P79+LA/q3w+73wer3/s390dBSNLU+w99AwRe92tFw8iTfDjzIE6g7X4dKpKtTWbEFmxpp8fXx8HE+fPUNj42NUVe/H9u0VdE5R4Pf70fP8Njp6a/Ci/zLdL0Lgyb1z2LRpIw4d2E8F6K75XmZ9fR13u7roHHoQeXl5s84N3L6DnuHfUFH5gM7hJ+B914VzVRXweFzYvLkECQkJX+0h0eBwOOBwOGA2m+m8FhRe72/R9ewc2l6dwtvAOfq9gLutNaiqKIfb7ab1a39J4OzsLJ4+e4Gmpie09vsgJycHbrebDk9B4W2wA109NbQefwPqgUjAlpYrePDwEVJTUzFr1ix/SWA6j6anZ9B65z4amx5h565dKCsro3OKAp+GXuBOZy16n9XTBETiAFXg81fv6JztoHNYRtef58m+oWE8f/ECtYcOU1lReB98C5om2NnTi8LCQrqG5wFj3P634P9fAPoF/k6A3wF+J8DfgL8d+BcDfh94s5+w8wAAAABJRU5ErkJggg==') 16 16, auto;
 }
 
@@ -50,8 +47,7 @@ body {
     background: rgba(10, 5, 0, 0.6);
 }
 
-/* --- EFECTO MOUSE (ESTELA DE MARIPOSAS) --- */
-/* Esto se mantiene para que salgan brillos de mariposa al mover el cursor */
+/* --- EFECTO ESTELA MARIPOSAS --- */
 .magic-butterfly {
     position: absolute;
     pointer-events: none;
@@ -99,7 +95,6 @@ body {
     text-transform: uppercase;
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
     display: flex; align-items: center; gap: 10px;
-    /* Aseguramos que el cursor de mariposa se vea aquí también */
     cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADFUlEQVRYR+1XW0hUURT9zrnOjE/TUcyXxCgLg0hEEb3445MgegjxIVTog0b0lILoKYKCHioMIiikv0qQ+hChhwoqQhA1H0pGqWkqaZozc8e5G+ecO+M8dRx1RjMD98e9556z915rn32OMC9+bC/+59+8Q/8d4G8GvL39GDo/X6E4R38F3J3dKFq7gCLGkCKEoAjByqGZ+52Z0c1851e2v6H1+vIuFBU9QnJ2NlJzslG+qQQ7t5fS/TqOf74E+v/oR2vHbeQVP0BKFv29e5vOXYUu5iLw+euvmJj4iN67g2i+fAeL8j7T2b4S/Pg5jMbWC8jI9SM5OxNpa2m7uRxbK0ow+fELuvrvoKXrPjILPiM5ixbgJ674e43D6Hh9Fq/7H6Om/jmyC0YpD5iZmcG3b98wMTExq46j6Tj6Xy8g7+MAlZ2V6L5/Gz33h2cIuH6yEvWn96K8YgNFCp1D0xH03u7B0PAINm3aBEJILoSApmm43XYc3S9PorjkD5Udhc8fnmFg8FGGgL8c1F68g0P79+LA/q3w+73wer3/s390dBSNLU+w99AwRe92tFw8iTfDjzIE6g7X4dKpKtTWbEFmxpp8fXx8HE+fPUNj42NUVe/H9u0VdE5R4Pf70fP8Njp6a/Ci/zLdL0Lgyb1z2LRpIw4d2E8F6K75XmZ9fR13u7roHHoQeXl5s84N3L6DnuHfUFH5gM7hJ+B914VzVRXweFzYvLkECQkJX+0h0eBwOOBwOGA2m+m8FhRe72/R9ewc2l6dwtvAOfq9gLutNaiqKIfb7ab1a39J4OzsLJ4+e4Gmpie09vsgJycHbrebDk9B4W2wA109NbQefwPqgUjAlpYrePDwEVJTUzFr1ix/SWA6j6anZ9B65z4amx5h565dKCsro3OKAp+GXuBOZy16n9XTBETiAFXg81fv6JztoHNYRtef58m+oWE8f/ECtYcOU1lReB98C5om2NnTi8LCQrqG5wFj3P634P9fAPoF/k6A3wF+J8DfgL8d+BcDfh94s5+w8wAAAABJRU5ErkJggg==') 16 16, pointer;
 }
 #enter-btn i { color: var(--cyan-blue); transition: 0.4s; }
@@ -130,7 +125,7 @@ body {
 
 .hidden-layout { opacity: 0; transform: scale(0.9) translateY(50px); pointer-events: none; }
 
-/* Decoraciones de borde */
+/* Decoraciones */
 .border-line { position: absolute; display: block; z-index: 10; pointer-events: none; opacity: 0.6; }
 .line-top { top: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation: flashHorizontal 3s infinite; }
 .line-bottom { bottom: 0; left: 20px; right: 20px; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan-blue), transparent); animation: flashHorizontal 3s infinite reverse; }
@@ -153,9 +148,7 @@ body {
     animation: float 4s ease-in-out infinite;
 }
 
-.name-container {
-    display: flex; justify-content: center; width: 100%; margin-bottom: 5px;
-}
+.name-container { display: flex; justify-content: center; width: 100%; margin-bottom: 5px; }
 .cursive-name {
     font-family: var(--font-cursive);
     font-size: 3.5rem;
@@ -191,7 +184,6 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.6);
     text-transform: uppercase; letter-spacing: 1px;
     opacity: 0; 
-    /* Aseguramos cursor mariposa al pasar por encima */
     cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADFUlEQVRYR+1XW0hUURT9zrnOjE/TUcyXxCgLg0hEEb3445MgegjxIVTog0b0lILoKYKCHioMIiikv0qQ+hChhwoqQhA1H0pGqWkqaZozc8e5G+ecO+M8dRx1RjMD98e9556z915rn32OMC9+bC/+59+8Q/8d4G8GvL39GDo/X6E4R38F3J3dKFq7gCLGkCKEoAjByqGZ+52Z0c1851e2v6H1+vIuFBU9QnJ2NlJzslG+qQQ7t5fS/TqOf74E+v/oR2vHbeQVP0BKFv29e5vOXYUu5iLw+euvmJj4iN67g2i+fAeL8j7T2b4S/Pg5jMbWC8jI9SM5OxNpa2m7uRxbK0ow+fELuvrvoKXrPjILPiM5ixbgJ674e43D6Hh9Fq/7H6Om/jmyC0YpD5iZmcG3b98wMTExq46j6Tj6Xy8g7+MAlZ2V6L5/Gz33h2cIuH6yEvWn96K8YgNFCp1D0xH03u7B0PAINm3aBEJILoSApmm43XYc3S9PorjkD5Udhc8fnmFg8FGGgL8c1F68g0P79+LA/q3w+73wer3/s390dBSNLU+w99AwRe92tFw8iTfDjzIE6g7X4dKpKtTWbEFmxpp8fXx8HE+fPUNj42NUVe/H9u0VdE5R4Pf70fP8Njp6a/Ci/zLdL0Lgyb1z2LRpIw4d2E8F6K75XmZ9fR13u7roHHoQeXl5s84N3L6DnuHfUFH5gM7hJ+B914VzVRXweFzYvLkECQkJX+0h0eBwOOBwOGA2m+m8FhRe72/R9ewc2l6dwtvAOfq9gLutNaiqKIfb7ab1a39J4OzsLJ4+e4Gmpie09vsgJycHbrebDk9B4W2wA109NbQefwPqgUjAlpYrePDwEVJTUzFr1ix/SWA6j6anZ9B65z4amx5h565dKCsro3OKAp+GXuBOZy16n9XTBETiAFXg81fv6JztoHNYRtef58m+oWE8f/ECtYcOU1lReB98C5om2NnTi8LCQrqG5wFj3P634P9fAPoF/k6A3wF+J8DfgL8d+BcDfh94s5+w8wAAAABJRU5ErkJggg==') 16 16, pointer;
 }
 
@@ -227,8 +219,6 @@ body {
 }
 
 .text-wrapper { max-width: 550px; line-height: 1.6; }
-
-/* NUEVA TIPOGRAFÍA PARA EL TEXTO "La elegancia..." */
 #typing-text {
     font-family: var(--font-cursive); 
     font-size: 2.2rem; 
@@ -236,7 +226,6 @@ body {
     line-height: 1.3;
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
-
 .cursor { color: var(--cyan-blue); animation: blink 1s infinite; font-weight: bold; font-size: 2rem; }
 
 /* --- MODALES --- */
@@ -261,33 +250,21 @@ body {
 .close-btn:hover { color: var(--gold); transform: rotate(90deg); }
 .modal h3 { font-family: var(--font-clean); font-weight: 700; color: var(--cyan-blue); border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 25px; letter-spacing: 2px; }
 
-/* Otros elementos */
 .friend-item-gold { border-bottom: 1px solid #1a1a1a; padding: 12px 0; color: #ccc; display: flex; align-items: center; gap: 10px; font-size: 1rem; }
 .friend-item-gold i { color: var(--gold); font-size: 1.1rem; text-shadow: 0 0 5px var(--gold); }
 .friend-item-gold span { flex-grow: 1; font-weight: 600; }
 .friend-item-gold small { color: #555; }
 
-/* --- GALERIA 3D REPARADA Y RESPONSIVE --- */
-.gallery-wrapper {
-    position: relative; width: 100%;
-    display: flex; justify-content: center; align-items: center;
-}
+/* --- GALERIA 3D --- */
+.gallery-wrapper { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
 .gallery-container-3d { 
-    height: 400px; 
-    position: relative; 
-    perspective: 1200px; 
+    height: 400px; position: relative; perspective: 1200px; 
     display: flex; align-items: center; justify-content: flex-start; 
-    width: 100%; 
-    overflow: hidden; 
+    width: 100%; overflow: hidden; 
 }
 .photo-carousel-3d { 
-    display: flex; 
-    position: absolute; 
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
-    transform-style: preserve-3d; 
-    align-items: center; 
-    height: 100%; 
-    left: 0; 
+    display: flex; position: absolute; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+    transform-style: preserve-3d; align-items: center; height: 100%; left: 0; 
 }
 .card-3d-gold {
     width: 240px; height: 320px; margin: 0 20px; flex-shrink: 0;
@@ -328,7 +305,7 @@ body {
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* --- RESPONSIVE TOTAL --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 950px) {
     #main-layout {
         flex-direction: column; width: 95%; height: auto; max-height: 90vh;
@@ -356,8 +333,32 @@ body {
     .center-title-fem { font-size: 2.8rem; }
     .sidebar-gold { padding: 15px; }
     .nav-btn-gold { width: 45%; justify-content: center; }
-    
     .card-3d-gold { width: 140px; height: 190px; margin: 0 5px; }
     .prev-3d { left: -5px; } .next-3d { right: -5px; }
-
 }
+
+/* --- MARCA DE AGUA ESTILO FANTASMA (NUEVO) --- */
+.watermark-ghost {
+    position: fixed;
+    bottom: 10px;       
+    left: 0; 
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-clean, sans-serif); 
+    font-size: 10px;    
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5); 
+    opacity: 0.3;       
+    z-index: 9999;
+    pointer-events: none; 
+    transition: opacity 0.5s ease;
+}
+.watermark-ghost:hover { opacity: 1; }
+.watermark-ghost a {
+    color: #fff;        
+    text-decoration: none;
+    font-weight: 700;
+    pointer-events: auto; 
+    margin-right: 5px;
+}
+.watermark-ghost span { font-weight: 300; }
